@@ -21,14 +21,16 @@ public class ClimaService {
         return dados;
     }
 
-    private void normalizeParameter(){
-        
+    private String normalizeParameter(String cidade){
+        cidade = cidade.replace("-", " ");
+        return cidade;
     }
+
     public String consultarClimaBH() {
         return consultarURL(BASE_URL_BH);
     }
     public String consultarClima(String cidade) {
-        return consultarURL(BASE_URL + cidade + "&count=1&language=pt&format=json");
+        return consultarURL(BASE_URL + normalizeParameter(cidade) + "&count=1&language=pt&format=json");
     }
     
 }

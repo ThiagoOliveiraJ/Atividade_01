@@ -6,8 +6,8 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class ClimaService {
-    private static final String BASE_URL_BH = "xxxx";
-    private static final String BASE_URL = "xxxx";
+    private static final String BASE_URL_BH = "https://api.open-meteo.com/v1/forecast?latitude=-19.555&longitude=-49.555&hourly=temperature_2m";
+    private static final String BASE_URL = "https://geocoding-api.open-meteo.com/v1/search?name=";
 
     private String consultarURL(String apiUrl){
         String dados = "";
@@ -21,11 +21,14 @@ public class ClimaService {
         return dados;
     }
 
+    private void normalizeParameter(){
+        
+    }
     public String consultarClimaBH() {
         return consultarURL(BASE_URL_BH);
     }
     public String consultarClima(String cidade) {
-        return consultarURL(BASE_URL + cidade);
+        return consultarURL(BASE_URL + cidade + "&count=1&language=pt&format=json");
     }
     
 }
